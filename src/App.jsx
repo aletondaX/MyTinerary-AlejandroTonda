@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import "./App.css";
 import Index from "./pages/Index/Index.jsx";
 
 function App() {
