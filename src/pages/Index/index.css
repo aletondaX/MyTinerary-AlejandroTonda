@@ -130,8 +130,8 @@ main {
 }
 
 /* .card { */
-  /* border: 3px solid blue; */
-  /* width: 300px; */
+  /* opacity: 0.5; */
+  /* transition: 100ms; */
 /* } */
 
 .card img {
@@ -145,8 +145,8 @@ main {
   background-color: rgba(0, 0, 0, 0.4);
   text-align: center;
   position: relative;
-  bottom: 3.65rem;
-  border-radius: 6px;
+  bottom: 3.66rem;
+  border-radius: 0 0 6px 6px;
 }
 
 .flex-row{
@@ -159,4 +159,15 @@ main {
   width: 28px;
   cursor: pointer;
   /* background-color: white; */
+}
+
+.fadeout {
+  opacity: 0;
+  transition: 500ms ease-in;
+  /* transition-delay: 3.5s; */
+}
+
+.fadein {
+  opacity: 1;
+  transition: 300ms ease-in;
 }
