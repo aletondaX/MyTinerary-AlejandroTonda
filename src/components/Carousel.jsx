@@ -1,70 +1,7 @@
 import React, { useState } from "react";
 import Arrow from "./Arrow";
 import Card from "./Card";
-// import cities from "../cities.js";
-
-let cities = [
-  {
-    city: "Buenos Aires",
-    country: "Argentina",
-    img: "bsas.jpg",
-  },
-  {
-    city: "São Paulo",
-    country: "Brazil",
-    img: "saopaulo.jpg",
-  },
-  {
-    city: "Tokyo",
-    country: "Japan",
-    img: "tokyo.jpg",
-  },
-  {
-    city: "New York",
-    country: "USA",
-    img: "newyork.jpg",
-  },
-  {
-    city: "Ciudad 5",
-    country: "País 5",
-    img: "generic-city.jpg",
-  },
-  {
-    city: "Ciudad 6",
-    country: "País 6",
-    img: "generic-city.jpg",
-  },
-  {
-    city: "Ciudad 7",
-    country: "País 7",
-    img: "generic-city.jpg",
-  },
-  {
-    city: "Ciudad 8",
-    country: "País 8",
-    img: "generic-city.jpg",
-  },
-  {
-    city: "Ciudad 9",
-    country: "País 9",
-    img: "generic-city.jpg",
-  },
-  {
-    city: "Ciudad 10",
-    country: "País 10",
-    img: "generic-city.jpg",
-  },
-  {
-    city: "Ciudad 11",
-    country: "País 11",
-    img: "generic-city.jpg",
-  },
-  {
-    city: "Ciudad 12",
-    country: "País 12",
-    img: "generic-city.jpg",
-  },
-];
+import {cities} from "../cities.js";
 
 const Carousel = () => {
   const [index, setIndex] = useState(0);
@@ -76,6 +13,7 @@ const Carousel = () => {
       setIndex(index + 4);
     }
   };
+  
   const prev = () => {
     if (index == 0) {
       setIndex(cities.length - 4);
@@ -86,7 +24,7 @@ const Carousel = () => {
 
   return (
     <div className="flex-row">
-      <Arrow src="arrow-left2.png" alt='arrow' fn={prev} />
+      <Arrow src="arrow-left.png" alt='arrow' fn={prev} />
       <div className="carousel">
         <Card
           city={cities[index].city}
@@ -109,7 +47,7 @@ const Carousel = () => {
           img={cities[index + 3].img}
         />
       </div>
-      <Arrow src="arrow-right2.png" alt='arrow' fn={next} />
+      <Arrow src="arrow-right.png" alt='arrow' fn={next} />
       {/* <h3>{index}</h3> */}
     </div>
   );

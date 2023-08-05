@@ -28,6 +28,16 @@ header {
   height: 3.2rem;
 }
 
+header div {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+#logo {
+  width: 46px;
+}
+
 header h1 {
   /* font-weight: 500; */
   /* font-size: 2.2rem; */
@@ -148,4 +158,5 @@ main {
 .arrow {
   width: 28px;
   cursor: pointer;
+  /* background-color: white; */
 }

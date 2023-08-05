@@ -3,7 +3,10 @@ import NavBar from "./NavBar";
 function Header() {
   return (
     <header>
-      <h1>My Tinerary</h1>
+      <div>
+        <img id="logo" src="logo.png" alt="Logo" />
+        <h1>My Tinerary</h1>
+      </div>
       <NavBar />
     </header>
   );

@@ -1,4 +1,4 @@
-let cities = [
+export const cities = [
   {
     city: "Buenos Aires",
     country: "Argentina",
