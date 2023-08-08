@@ -29,10 +29,10 @@ const Carousel = () => {
   const next = () => {
     setHide(false); //Fade in the cards
     setCanScroll(true); //Can use arrows again
-    if (index == cities.length - 4) {
+    if (index == cities.length - 1) {
       setIndex(0);
     } else {
-      setIndex(index + 4);
+      setIndex(index + 1);
     }
   };
 
@@ -40,10 +40,10 @@ const Carousel = () => {
     setHide(false);
     setCanScroll(true);
     if (canScroll) {
-      if (index == cities.length - 4) {
+      if (index == cities.length - 1) {
         setIndex(0);
       } else {
-        setIndex(index + 4);
+        setIndex(index + 1);
       }
     }
   };
@@ -53,9 +53,9 @@ const Carousel = () => {
     setCanScroll(true);
     if (canScroll) {
       if (index == 0) {
-        setIndex(cities.length - 4);
+        setIndex(cities.length - 1);
       } else {
-        setIndex(index - 4);
+        setIndex(index - 1);
       }
     }
   };
@@ -85,35 +85,25 @@ const Carousel = () => {
     <div className="flex-row" onMouseEnter={pause} onMouseLeave={resume}>
       <Arrow src="arrow-left.png" alt="arrow" fn={prev} />
       <div className="carousel">
-        <Card
-          // className={hide ? "fadeout" : "fadein"}
-          // className="fadeout"
+        {
+          cities[index].map((each, indexMap) => {
+            return <Card
+            key={indexMap}
+            hide={hide}
+            city={each.city}
+            country={each.country}
+            img={each.photo}/>
+          })
+        }
+        {/* Card template */}
+        {/* <Card
           hide={hide}
           city={cities[index].city}
           country={cities[index].country}
-          img={cities[index].img}//ternario? si existe string usar, sino default
-        />
-        <Card
-          hide={hide}
-          city={cities[index + 1].city}
-          country={cities[index + 1].country}
-          img={cities[index + 1].img}
-        />
-        <Card
-          hide={hide}
-          city={cities[index + 2].city}
-          country={cities[index + 2].country}
-          img={cities[index + 2].img}
-        />
-        <Card
-          hide={hide}
-          city={cities[index + 3].city}
-          country={cities[index + 3].country}
-          img={cities[index + 3].img}
-        />
+          img={cities[index].img}
+        /> */}
       </div>
       <Arrow src="arrow-right.png" alt="arrow" fn={nextArrow} />
-      {/* <h3>{index}</h3> */}
     </div>
   );
 };
