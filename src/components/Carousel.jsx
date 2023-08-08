@@ -1,13 +1,24 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Arrow from "./Arrow";
 import Card from "./Card";
 import { cities } from "../cities.js";
 
-const Carousel = () => {
+const splitArray = (array, size) => {
+  let newArray = [];
+  for (let i = 0; i < array.length; i += size) {
+    let subArray = array.slice(i, i + size);
+    newArray.push(subArray);
+  }
+  return newArray;
+}
+
+const groupedCities = splitArray(cities, 4);
+
+export default function Carousel() {
   const timerRef = useRef(null);
   const [index, setIndex] = useState(0);
   const [hide, setHide] = useState(false);
-  const [canScroll, setCanScroll] = useState(true);
+  const [canScroll, setCanScroll] = useState(true);  
 
   useEffect(() => {
     //Timer to fade out the current slide
@@ -29,7 +40,7 @@ const Carousel = () => {
   const next = () => {
     setHide(false); //Fade in the cards
     setCanScroll(true); //Can use arrows again
-    if (index == cities.length - 1) {
+    if (index == groupedCities.length - 1) {
       setIndex(0);
     } else {
       setIndex(index + 1);
@@ -40,7 +51,7 @@ const Carousel = () => {
     setHide(false);
     setCanScroll(true);
     if (canScroll) {
-      if (index == cities.length - 1) {
+      if (index == groupedCities.length - 1) {
         setIndex(0);
       } else {
         setIndex(index + 1);
@@ -53,7 +64,7 @@ const Carousel = () => {
     setCanScroll(true);
     if (canScroll) {
       if (index == 0) {
-        setIndex(cities.length - 1);
+        setIndex(groupedCities.length - 1);
       } else {
         setIndex(index - 1);
       }
@@ -86,7 +97,7 @@ const Carousel = () => {
       <Arrow src="arrow-left.png" alt="arrow" fn={prev} />
       <div className="carousel">
         {
-          cities[index].map((each, indexMap) => {
+          groupedCities[index].map((each, indexMap) => {
             return <Card
             key={indexMap}
             hide={hide}
@@ -107,5 +118,3 @@ const Carousel = () => {
     </div>
   );
 };
-
-export default Carousel;

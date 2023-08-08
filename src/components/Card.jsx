@@ -1,6 +1,4 @@
-import React from "react";
-
-function Card(props) {
+export default function Card(props) {
   return (
     // <div className="card">
     <div className={props.hide ? "card fadeout" : "card fadein"}>
@@ -12,5 +10,3 @@ function Card(props) {
     </div>
   );
 }
-
-export default Card;

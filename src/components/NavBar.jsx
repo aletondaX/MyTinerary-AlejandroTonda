@@ -1,13 +1,16 @@
-function NavBar() {
+import { Link, NavLink } from "react-router-dom";
+
+export default function NavBar() {
   return (
     <nav>
-      <a href="">Home</a>
-      <a href="">Cities</a>
-      <a className="highlight-button" href="">Log In</a>
-      {/* <a href=""><img src="default-user.jpg" alt="" /></a> */}
+      <NavLink className={({ isActive, isPending }) =>
+        isPending ? "pending" : isActive ? "active" : ""}
+        to="/">Home</NavLink>
+      <NavLink className={({ isActive, isPending }) =>
+        isPending ? "pending" : isActive ? "active" : ""}
+        to="/cities">Cities</NavLink>
+      <Link className="highlight-button" to="#">Log In</Link>
       <img src="default-user.jpg" alt="" />
     </nav>
   );
 }
-
-export default NavBar;

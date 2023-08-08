@@ -1,20 +1,20 @@
-import { useState } from "react";
-import Index from "./pages/Index/Index.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Index from "./pages/Index.jsx";
+import Cities from "./pages/Cities.jsx";
 
 const router = createBrowserRouter([
   {
     path:"/",
     element:<Index />
+  },
+  {
+    path:"/cities",
+    element:<Cities />
   }
 ]) 
 
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
     <RouterProvider router={router}/>
   );
 }
-
-export default App;
