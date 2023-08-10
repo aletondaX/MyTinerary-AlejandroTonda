@@ -5,9 +5,17 @@ export default function Cities() {
   return (
     <>
       <Header />
-      <img className="jaja" src="meme.gif" alt="" />
-      <img src="under-const.jpg" alt="" />
-      <img className="jaja" src="meme.gif" alt="" />
+      <main>
+        <div className="under">
+          <img src="meme.gif" alt="" />
+          <img src="meme.gif" alt="" />
+          <img src="meme.gif" alt="" />
+          <img src="under-const.jpg" alt="" />
+          <img src="meme.gif" alt="" />
+          <img src="meme.gif" alt="" />
+          <img src="meme.gif" alt="" />
+        </div>
+      </main>
       <Footer />
     </>
   );

@@ -199,6 +199,7 @@ main {
 .cta {
   font-weight: 500;
   font-size: 1.5rem;
+  text-shadow: 1px 1px 4px rgba(0, 87, 138, 0.5);
   /* background-color: white; */
   /* padding: 4px 14px; */
   /* border-radius: 6px; */
@@ -303,9 +304,8 @@ main {
   color: rgba(255, 255, 255, 0.87);
 }
 
-.jaja {
-  /* object-fit: contain; */
-  width: 100px;
+.under img{
+  max-width: 1000px;
 }
 
 @media (max-width: 570px) {
@@ -352,6 +352,9 @@ main {
   }
   .dim {
     background-color: rgba(0, 0, 0, 0.8);
+  }
+  .under img{
+    max-width: 100%;
   }
 }
 
