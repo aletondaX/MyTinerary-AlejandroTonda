@@ -304,8 +304,12 @@ main {
   color: rgba(255, 255, 255, 0.87);
 }
 
-.under img{
-  max-width: 1000px;
+.under {
+  overflow-x: hidden;
+}
+
+.under img {
+  max-width: 100%;
 }
 
 @media (max-width: 570px) {
@@ -353,9 +357,6 @@ main {
   .dim {
     background-color: rgba(0, 0, 0, 0.8);
   }
-  .under img{
-    max-width: 100%;
-  }
 }
 
 @media (min-width: 1350px) {
@@ -369,5 +370,8 @@ main {
     aspect-ratio: 1.5/1;
     height: 100%;
     /* width: 100%; */
+  }
+  .under img {
+    max-width: 1000px;
   }
 }
