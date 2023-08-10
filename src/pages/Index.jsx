@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Carousel from "../components/Carousel";
+import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
 export default function Index() {
@@ -21,7 +22,7 @@ export default function Index() {
         </div>
       </main>
 
-      {/* <footer></footer> */}
+      <Footer />
     </>
   );
 }

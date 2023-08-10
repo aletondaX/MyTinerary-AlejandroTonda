@@ -10,7 +10,7 @@ export default function NavBar() {
         isPending ? "pending" : isActive ? "active" : ""}
         to="/cities">Cities</NavLink>
       <Link className="highlight-button" to="#">Log In</Link>
-      <img src="default-user.jpg" alt="" />
+      <img src="def-user.png" alt="" />
     </nav>
   );
 }
