@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div className='footer'>
       <div className='footer-links'>
-        <p>Go To:</p>
+        {/* <p>Go To:</p> */}
         <Link to="/">Home</Link>|
         <Link to="/cities">Cities</Link>
       </div>

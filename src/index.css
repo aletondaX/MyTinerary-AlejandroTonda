@@ -127,7 +127,6 @@ nav a {
   background-color: white;
   padding: 4px 14px;
   border-radius: 6px;
-  /* margin: auto 5px; */
   width: fit-content;
 }
 
@@ -141,6 +140,30 @@ nav img {
 
 main {
   /* border: 2px solid blue; */
+  min-height: 100vh - 6.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  /* row-gap: 7rem; */
+}
+
+.main-center {
+  /* border: 2px solid blue; */
+  /* margin: auto 10rem; */
+  color: white;
+  max-width: 80%;
+  font-size: 1.1rem;
+  font-style: italic;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  user-select: none;
+  text-align: center;
+  /* display: flex; */
+}
+
+.main2 {
+  /* border: 2px solid red; */
   /* margin: 10rem auto; */
   display: flex;
   justify-content: space-around;
@@ -163,6 +186,7 @@ main {
   align-items: center;
   text-align: center;
   /* max-height: 500px; */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
   user-select: none;
 }
 
@@ -172,10 +196,29 @@ main {
   margin: 1rem;
 }
 
+.cta {
+  font-weight: 500;
+  font-size: 1.5rem;
+  /* background-color: white; */
+  /* padding: 4px 14px; */
+  /* border-radius: 6px; */
+  /* width: fit-content; */
+}
+
 .main-right {
   /* border: 2px solid blue; */
   width: 55%;
   /* max-height: 600px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.main-right h1 {
+  margin-bottom: 12px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+  user-select: none;
 }
 
 .carousel {
@@ -271,26 +314,41 @@ main {
     height: 6rem;
     padding: 10px;
   }
-  main {
+  .main-center{
+    /* border: 2px solid blue; */
+    max-width: 90%;
+    padding: 5.5rem 0;
+    /* height: calc(100vh - 6rem); */
+    
+  }
+  .main2 {
     flex-direction: column;
     height: auto;
   }
   .main-left {
     width: auto;
-    margin: 20px;
-    height: calc(100vh - 6rem - 40px);
+    margin: 0 2rem;
+    /* height: calc(100vh - 6rem - 40px); */
+  }
+  .main-left p {
+    display: none;
   }
   .main-right {
+    margin-top: 2rem;
+    /* margin-bottom: 1rem; */
     width: auto;
     height: auto;
   }
   .arrow {
     display: none;
   }
+  .main-right h1 {
+    margin-bottom: auto;
+  }
   .carousel {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 24px;
   }
   .dim {
     background-color: rgba(0, 0, 0, 0.8);
@@ -298,7 +356,15 @@ main {
 }
 
 @media (min-width: 1350px) {
+  .main2 {
+    justify-content: space-evenly;
+  }
+  .main-right {
+    width: 40%;
+  }
   .card {
-    aspect-ratio: 1.4/1;
+    aspect-ratio: 1.5/1;
+    height: 100%;
+    /* width: 100%; */
   }
 }

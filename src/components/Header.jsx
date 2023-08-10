@@ -5,7 +5,7 @@ export default function Header() {
     <header>
       <div>
         <img id="logo" src="logo10.png" alt="Logo" />
-        <h1>My Tinerary</h1>
+        <h1>MyTinerary</h1>
       </div>
       <NavBar />
     </header>
