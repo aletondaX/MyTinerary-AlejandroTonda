@@ -259,10 +259,10 @@ main {
   border-radius: 0 0 6px 6px;
 }
 
-.dim h3,
+/* .dim h3,
 .dim p {
   cursor: pointer;
-}
+} */
 
 .flex-row {
   display: flex;

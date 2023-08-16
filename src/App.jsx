@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Index from "./pages/Index.jsx";
 import Cities from "./pages/Cities.jsx";
+import City from "./pages/City.jsx";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
   {
     path:"/cities",
     element:<Cities />
+  },
+  {
+    path:"/city/:id",
+    element:<City />
   }
 ]) 
 

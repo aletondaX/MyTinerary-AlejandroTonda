@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import styles from "../pages/Cities.module.css";
+import { Link } from "react-router-dom";
 
 export default function CitySearch() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState();
+  const [selected, setSelected] = useState([0, false]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("cities.json");
+      // const response = await fetch("cities.json");
+      const response = await fetch("http://localhost:4000/api/cities");
       // console.log(response);
       const json = await response.json();
-      // console.log(json);
-      setData(json);
-      setFilteredData(json);
+      // console.log(json.response);
+      setData(json.response);
+      setFilteredData(json.response);
       // cityArray = json;
       // console.log(cityArray);
     };
@@ -40,10 +43,11 @@ export default function CitySearch() {
     // console.log(filteredData);
   }, [input]);
 
-  // const filterCities = () => {
-  //   // console.log("key up");
-  //   console.log(input);
-  // }
+  const toggleSelected = (index) => {
+    // console.log("toggleando: " + index);
+    setSelected([index, !selected[1]]);
+    // console.log(selected);
+  };
 
   return (
     <>
@@ -56,28 +60,28 @@ export default function CitySearch() {
       />
       <div id={styles.city_list}>
         {
-          // if (filteredData.length > 0) {
-          filteredData.length > 0 ?
-
-          filteredData.map((each, indexMap) => {
-            return (
-              <div className={styles.citycard} key={indexMap}>
-                <img src={each.photo} alt="" />
-                <div className={styles.dim}>
-                  <h3>{each.city}</h3>
-                  <p>{each.country}</p>
+          filteredData.length > 0 ? (
+            filteredData.map((each, indexMap) => {
+              return (
+                <div className={indexMap == selected[0] && selected[1] ? styles.cityselected : styles.citycard} key={indexMap} onClick={() => toggleSelected(indexMap)}>
+                  <Link className={styles.view_button} to={"/city/" + each._id}>See More</Link>
+                  <img src={each.image} alt={each.city + " Photo"} draggable="false"/>
+                  <div className={styles.dim}>
+                    <h3>{each.city}</h3>
+                    <p>{each.country}</p>
+                  </div>
                 </div>
-              </div>
-            );
-          })
-          : <div className={styles.citycard} key={0}>
-          <img src="notfound2.png" alt="" />
-          {/* <div className={styles.dim}> */}
-            {/* <h3>Ooops!</h3> */}
-            <p>Try searching again...</p>
-          {/* </div> */}
-        </div>
-          // }
+              );
+            })
+          ) : input !== undefined && input !== "" ? (
+            <div className={styles.citycard} key={0}>
+              <img src="notfound.png" alt="Not Found" />
+              {/* <div className={styles.dim}> */}
+              {/* <h3>Ooops!</h3> */}
+              <p>Try searching again...</p>
+              {/* </div> */}
+            </div>
+          ) : <h1></h1>
         }
       </div>
     </>
