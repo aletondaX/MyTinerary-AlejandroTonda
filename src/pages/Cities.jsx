@@ -7,7 +7,7 @@ export default function Cities() {
   return (
     <>
       <Header />
-      <main>
+      <main className={styles.main}>
         <div className={styles.main_above}>
           <h1>Cities</h1>
           <p>A collection of the most beautiful places and experience</p>

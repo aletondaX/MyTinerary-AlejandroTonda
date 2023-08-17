@@ -30,3 +30,9 @@
   width: fit-content;
   margin-bottom: 10px;
 }
+
+@media (max-width: 570px) {
+  .detail img {
+    min-height: 280px;
+  }
+}
