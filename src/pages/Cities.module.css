@@ -88,7 +88,7 @@
 
 .citycard:hover {
   color: antiquewhite;
-  width: calc((100vw / 3));
+  width: calc(100vw / 3);
   /* height: 400px; */
 }
 
@@ -96,7 +96,7 @@
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 6px;
   position: relative;
-  width: calc((100vw / 3));
+  width: calc(100vw / 3);
   height: 400px;
   margin: 6px;
   user-select: none;
@@ -193,5 +193,17 @@
   }
   .view_button {
     padding: 8px 18px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .citycard {
+    width: calc((100vw / 4) - 30px);
+  }
+  .citycard:hover {
+    width: calc(100vw / 4);
+  }
+  .cityselected {
+    width: calc(100vw / 4);
   }
 }
