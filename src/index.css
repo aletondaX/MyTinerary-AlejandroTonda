@@ -65,7 +65,7 @@ button:focus-visible {
   /* padding: 1rem 2rem; */
   min-height: 100vh;
   width: 100%;
-  background-image: url(back-img.jpg);
+  background-image: url(/back-img.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 20% 30%;
@@ -82,6 +82,7 @@ header {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.25);
   height: 3.2rem;
+  user-select: none;
 }
 
 header div {
@@ -98,7 +99,7 @@ header h1 {
   /* font-weight: 500; */
   /* font-size: 2.2rem; */
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
-  user-select: none;
+  /* user-select: none; */
 }
 
 nav {
@@ -314,6 +315,62 @@ main {
 
 .under img {
   max-width: 100%;
+}
+
+.itinerary {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 90%;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  text-align: center;
+  gap: 20px;
+  user-select: none;
+}
+
+.iti-flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.iti-flex > * {
+  width: 33%;
+}
+
+.hashtags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.hash {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: black;
+  padding: 0px 6px;
+  border-radius: 2px;
+}
+
+.dollar {
+  margin: 2px;
+  width: 48px;
+}
+
+.author-info img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.author-info p {
+  text-align: center;
 }
 
 @media (max-width: 570px) {
