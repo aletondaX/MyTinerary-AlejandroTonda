@@ -1,9 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { filterCities, getCities } from "../actions/cityAction";
+import { filterCities, getCities, getCity } from "../actions/cityAction";
 
 const initialState = {
   cities: [],
-  filteredCities: []
+  filteredCities: [],
+  city: {}
 }
 
 const cityReducer = createReducer(initialState, (builder) => {
@@ -27,7 +28,7 @@ const cityReducer = createReducer(initialState, (builder) => {
       const input = action.payload;
       // console.log(input);
       if (input !== undefined && input !== "") {
-        const filterResult = state.cities.filter((city) => {
+        const filterResult = state.cities.filter(city => {
           return (
             city.city.toLowerCase().startsWith(input.toLowerCase()) ||
             city.country.toLowerCase().startsWith(input.toLowerCase())
@@ -46,6 +47,22 @@ const cityReducer = createReducer(initialState, (builder) => {
         };
         return newState;
       }
+    })
+    .addCase(getCity.fulfilled, (state, action) => {
+      // console.log(action.payload);
+      const newState = {
+        ...state,
+        city: action.payload
+      }
+      return newState;
+    })
+    .addCase(getCity.pending, (state, action) => {
+      // console.log(action.payload);
+      const newState = {
+        ...state,
+        city: {}
+      }
+      return newState;
     })
 });
 

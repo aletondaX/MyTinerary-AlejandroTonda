@@ -1,22 +1,15 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Itinerary(props) {
-  const [data, setData] = useState({});
   const [expanded, setExpanded] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("http://localhost:4000/api/itineraries/" + props.id);
-      const json = await response.json();
-      // console.log(json.response);
-      setData(json.response)
-    };
-    fetchData().catch(console.error);
-  }, []);
+  const itineraries = useSelector(store => store.itineraryReducer.itineraries);
+  // console.log(itineraries);
 
   const renderPrice = () => {
     let price = [];
-    for (let i = 0; i < data.price; i++) {
+    for (let i = 0; i < itineraries[props.id].price; i++) {
       price.push(<img className="dollar" key={i} src="/dollar.png" draggable="false"></img>);      
     }
     return price;
@@ -29,10 +22,10 @@ export default function Itinerary(props) {
   };
 
   return (
-    <div id={data._id} className={expanded ? "itinerary-expanded" : "itinerary"}>
+    <div id={itineraries[props.id]._id} className={expanded ? "itinerary-expanded" : "itinerary"}>
       <div className="hashtags">
-      {data.hashtags !== undefined ?
-      data.hashtags.map((each, index) => {
+      {itineraries[props.id].hashtags !== undefined ?
+      itineraries[props.id].hashtags.map((each, index) => {
         return <p className="hash" key={index}>#{each}</p>
       }) : <></>}
       </div>
@@ -41,15 +34,15 @@ export default function Itinerary(props) {
           <p>Price:</p>
           {renderPrice()}
           <p>Duration:</p>
-          <p className="text-sm">{data.duration} hour(s)</p>
+          <p className="text-sm">{itineraries[props.id].duration} hour(s)</p>
         </div>
         <div className="author-info">
-          <img src={data.photo} alt="Author photo" draggable="false"/>
-          <p>{data.author}</p>
+          <img src={itineraries[props.id].photo} alt="Author photo" draggable="false"/>
+          <p>{itineraries[props.id].author}</p>
         </div>
         <div className="likes">
           <img src="/likes.png" alt="Likes" />
-          <p>{data.likes}</p>
+          <p>{itineraries[props.id].likes}</p>
         </div>
       </div>
       {
@@ -62,7 +55,7 @@ export default function Itinerary(props) {
         </> :
         <></>
       }
-      <h3 className="expand-itinerary-button" onClick={() => toggleExpanded(data._id)}>{expanded ? "View Less" : "View More"}</h3>
+      <h3 className="expand-itinerary-button" onClick={() => toggleExpanded(itineraries[props.id]._id)}>{expanded ? "View Less" : "View More"}</h3>
     </div>
   );
 }

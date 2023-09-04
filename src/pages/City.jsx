@@ -4,29 +4,21 @@ import Footer from "../components/Footer";
 import styles from "../pages/City.module.css";
 import { Link, useParams } from "react-router-dom";
 import Itinerary from "../components/Itinerary";
-// import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getCity } from "../redux/actions/cityAction";
+import { getItineraries } from "../redux/actions/itineraryAction";
 
 export default function City() {
   const { id } = useParams();
-  const [data, setData] = useState({});
-  const [itineraries, setItineraries] = useState();
-  // const store = useSelector(store => store);
-  // console.log(store);
+
+  const dispatch = useDispatch();
+  const city = useSelector(store => store.cityReducer.city);
+  const itineraries = useSelector(store => store.itineraryReducer.itineraries);
+  // console.log(itineraries);
 
   useEffect(() => {
-    const fetchData = async () => {
-      // const response = await fetch("cities.json");
-      const response = await fetch("http://localhost:4000/api/cities/" + id);
-      const json = await response.json();
-      // console.log(json.response);
-      setData(json.response)
-
-      const itiRes = await fetch("http://localhost:4000/api/itineraries/city/" + id);
-      const itiJson = await itiRes.json();
-      // console.log(itiJson.response);
-      setItineraries(itiJson.response)
-    };
-    fetchData().catch(console.error);
+    dispatch(getCity(id));
+    dispatch(getItineraries(id));
   }, []);
 
   return (
@@ -34,8 +26,8 @@ export default function City() {
       <Header />
       <main className={styles.main}>
         <div className={styles.detail}>
-          <img src={data.image} draggable="false"></img>
-          <h1>{data.city}, {data.country}</h1>
+          <img src={city.image} draggable="false"></img>
+          <h1>{city.city}{itineraries !== undefined ? "," : <></>} {city.country}</h1>
         </div>
         <div className="flexy">
         {
@@ -46,7 +38,8 @@ export default function City() {
           </> :
           itineraries.length > 0 ?
           itineraries.map((each, index) => {
-            return <Itinerary key={index} id={each._id}/>
+            // return <Itinerary key={index} id={each._id}/>
+            return <Itinerary key={index} id={index}/>
           }) :
           <h3>There are no itineraries yet for this city ☻</h3>
         }
