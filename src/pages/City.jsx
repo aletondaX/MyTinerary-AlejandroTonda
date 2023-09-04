@@ -4,11 +4,14 @@ import Footer from "../components/Footer";
 import styles from "../pages/City.module.css";
 import { Link, useParams } from "react-router-dom";
 import Itinerary from "../components/Itinerary";
+// import { useSelector } from "react-redux";
 
 export default function City() {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [itineraries, setItineraries] = useState();
+  // const store = useSelector(store => store);
+  // console.log(store);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,16 +37,21 @@ export default function City() {
           <img src={data.image} draggable="false"></img>
           <h1>{data.city}, {data.country}</h1>
         </div>
+        <div className="flexy">
         {
-          itineraries !== undefined ?
-            itineraries.map((each, index) => {
-              // console.log(each._id);
-              return (
-                <Itinerary key={index} id={each._id}/>
-              )
-              })
-        : <h2>Loading Itineraries...</h2>}
-        <Link className={styles.goback} to="/cities">Go back</Link>
+          itineraries === undefined ?
+          <>
+            <h3>Loading Itineraries...</h3>
+            <img src="/meme.gif"></img>
+          </> :
+          itineraries.length > 0 ?
+          itineraries.map((each, index) => {
+            return <Itinerary key={index} id={each._id}/>
+          }) :
+          <h3>There are no itineraries yet for this city ☻</h3>
+        }
+        </div>
+        <Link className={styles.goback} to="/cities">Back to Cities</Link>
       </main>
       <Footer />
     </>

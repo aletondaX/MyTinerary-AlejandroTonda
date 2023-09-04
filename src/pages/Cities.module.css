@@ -66,6 +66,7 @@
   /* flex-direction: column; */
   /* flex-wrap: wrap; */
   overflow-y: scroll;
+  scroll-snap-type: y mandatory;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE y Edge */
 }
@@ -84,6 +85,7 @@
   cursor: pointer;
   /* user-drag: none; */
   /* position: relative; */
+  scroll-snap-align: start;
 }
 
 .citycard:hover {
@@ -175,12 +177,14 @@
   #city_list {
     /* border: 2px solid blue; */
     overflow-y: visible;
+    /* scroll-snap-type: y mandatory; */
   }
   .citycard {
     /* border: 2px solid red; */
     width: 85%;
     height: 200px;
     margin: 6px;
+    /* scroll-snap-align: start; */
   }
   .citycard:hover {
     border: 1px solid rgba(255, 255, 255, 0.6);

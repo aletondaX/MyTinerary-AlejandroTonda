@@ -1,46 +1,25 @@
 import { useEffect, useState } from "react";
 import styles from "../pages/Cities.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { filterCities, getCities } from "../redux/actions/cityAction";
 
 export default function CitySearch() {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
   const [input, setInput] = useState();
   const [selected, setSelected] = useState([0, false]);
 
+  const dispatch = useDispatch();
+  const cities = useSelector(store => store.cityReducer.filteredCities);
+
   useEffect(() => {
-    const fetchData = async () => {
-      // const response = await fetch("cities.json");
-      const response = await fetch("http://localhost:4000/api/cities");
-      // console.log(response);
-      const json = await response.json();
-      // console.log(json.response);
-      setData(json.response);
-      setFilteredData(json.response);
-      // cityArray = json;
-      // console.log(cityArray);
-    };
-    fetchData().catch(console.error);
+    if (cities.length === 0) {
+      dispatch(getCities());
+    }
   }, []);
 
   useEffect(() => {
-    // console.log(data);
-    // console.log("Input: " + input);
-    if (input !== undefined && input !== "") {
-      // console.log("El Input no es vacio");
-      setFilteredData(
-        data.filter((city) => {
-          return (
-            city.city.toLowerCase().startsWith(input.toLowerCase()) ||
-            city.country.toLowerCase().startsWith(input.toLowerCase())
-          );
-        })
-      );
-    } else {
-      // console.log("el input es undefined o vacio");
-      setFilteredData(data);
-    }
-    // console.log(filteredData);
+    // console.log(input);
+    dispatch(filterCities(input));
   }, [input]);
 
   const toggleSelected = (index) => {
@@ -60,8 +39,8 @@ export default function CitySearch() {
       />
       <div id={styles.city_list}>
         {
-          filteredData.length > 0 ? (
-            filteredData.map((each, indexMap) => {
+          cities.length > 0 ? (
+            cities.map((each, indexMap) => {
               return (
                 <div className={indexMap == selected[0] && selected[1] ? styles.cityselected : styles.citycard} key={indexMap} onClick={() => toggleSelected(indexMap)}>
                   <Link className={styles.view_button} to={"/city/" + each._id}>See More</Link>
@@ -76,12 +55,9 @@ export default function CitySearch() {
           ) : input !== undefined && input !== "" ? (
             <div className={styles.citycard} key={0}>
               <img src="notfound.png" alt="Not Found" />
-              {/* <div className={styles.dim}> */}
-              {/* <h3>Ooops!</h3> */}
               <p>Try searching again...</p>
-              {/* </div> */}
             </div>
-          ) : <h1></h1>
+          ) : <h1>Loading cities...</h1>
         }
       </div>
     </>
