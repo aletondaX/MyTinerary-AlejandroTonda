@@ -9,6 +9,7 @@ import { login } from "../redux/actions/authAction";
 
 export default function SignIn() {
   const [data, setData] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -21,34 +22,48 @@ export default function SignIn() {
   const handleSubmitData = async (e) => {
     e.preventDefault();
     // console.log(data);
-    const response = await fetch("http://localhost:4000/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    const json = await response.json();
-    console.log(json);
-    if (json.success === true) {
-      dispatch(login(json));
-      navigate("/");
+    try {
+      const response = await fetch("http://localhost:4000/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      const json = await response.json();
+      console.log(json);
+      if (json.success === true) {
+        dispatch(login(json));
+        navigate("/");
+      } else if (json.details) {
+        // console.log(json.details[0].message);
+        setErrorMessage(json.details[0].message);
+      } else {
+        // console.log(json.message);
+        setErrorMessage(json.message);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const handleSubmitGoogle = async (datax) => {
-    const response = await fetch("http://localhost:4000/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify(datax),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    const json = await response.json();
-    console.log(json);
-    if (json.success === true) {
-      dispatch(login(json));
-      navigate("/");
+    try {
+      const response = await fetch("http://localhost:4000/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(datax),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      const json = await response.json();
+      console.log(json);
+      if (json.success === true) {
+        dispatch(login(json));
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -90,6 +105,7 @@ export default function SignIn() {
               onChange={handleChangeData}
             />
             <button type="submit">Log In</button>
+            <p className="errormsg">{errorMessage}</p>
           </form>
           <div className="flexear">
             <p>Don't have an account?</p>

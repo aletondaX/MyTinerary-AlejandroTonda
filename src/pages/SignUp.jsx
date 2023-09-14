@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [data, setData] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const countries = [
@@ -30,27 +31,33 @@ export default function SignUp() {
   const handleSubmitData = async (e) => {
     e.preventDefault();
     // console.log(data);
-    const response = await fetch("http://localhost:4000/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-    const json = await response.json();
-    console.log(json);
-    if (json.success === true) {
-      toast.success("Welcome, " + json.userData.firstName + "!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "light",
+    try {
+      const response = await fetch("http://localhost:4000/api/auth/signup", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
       });
-      navigate("/login");
+      const json = await response.json();
+      console.log(json);
+      if (json.success === true) {
+        toast.success("Welcome, " + json.userData.firstName + "!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "light",
+        });
+        navigate("/login");
+      } else if (json.details) {
+        setErrorMessage(json.details[0].message);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -156,6 +163,7 @@ export default function SignUp() {
               })}
             </select>
             <button type="submit">Sign Up</button>
+            <p className="errormsg">{errorMessage}</p>
           </form>
           <div className="flexear">
             <p>Already have an account?</p>
