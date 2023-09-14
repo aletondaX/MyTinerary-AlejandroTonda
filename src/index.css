@@ -477,6 +477,11 @@ main {
   gap: 10px;
 }
 
+.form-flex input, .form-flex select {
+  font-family: "Poppins", sans-serif;
+  /* font-size: 0.9rem; */
+}
+
 @media (max-width: 570px) {
   header {
     /* flex-direction: column; */
@@ -521,7 +526,7 @@ main {
   .login {
     padding: 16px;
   }
-  button {
+  nav button {
     position: absolute;
     top: 10px;
     right: 10px;

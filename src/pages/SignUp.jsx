@@ -9,6 +9,17 @@ export default function SignUp() {
   const [data, setData] = useState({});
   const navigate = useNavigate();
 
+  const countries = [
+    "Argentina",
+    "Brazil",
+    "Mexico",
+    "United States",
+    "Canada",
+    "United Kingdom",
+    "Russia",
+    "Japan"
+  ]
+
   const handleChangeData = (e) => {
     setData((prevState) => {
       return { ...prevState, [e.target.name]: e.target.value };
@@ -109,9 +120,9 @@ export default function SignUp() {
           />
           <select name="country" value={data.country} onChange={handleChangeData}>
             <option value="">Select your country</option>
-            <option value="Argentina">Argentina</option>
-            <option value="Brazil">Brazil</option>
-            <option value="United States">United States</option>
+            {countries.map((each) => {
+              return <option key={each} value={each}>{each}</option>
+            })}
           </select>
           <button type="submit">Sign Up</button>
         </form>
