@@ -459,7 +459,8 @@ main {
   /* border: 2px solid red; */
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.5);
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   /* height: 500px; */
   align-self: center;
   display: flex;
@@ -480,6 +481,12 @@ main {
 .form-flex input, .form-flex select {
   font-family: "Poppins", sans-serif;
   /* font-size: 0.9rem; */
+}
+
+.flexear {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 @media (max-width: 570px) {

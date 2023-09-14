@@ -9,6 +9,6 @@ export const LS = {
     JSON.stringify(localStorage.setItem(key, value))
   ),
   clear: () => (
-    localStorage.clear
+    localStorage.clear()
   )
 }

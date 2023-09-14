@@ -55,45 +55,51 @@ export default function SignIn() {
   return (
     <>
       <Header />
-      <div className="form-container">
-        <h2>Log In</h2>
-        <GoogleLogin
-          onSuccess={credentialResponse => {
-            // console.log(credentialResponse);
-            const infoUser = jwtDecode(credentialResponse.credential);
-            console.log(infoUser);
-            handleSubmitGoogle({
-              email: infoUser.email,
-              password: "Hola123"
-            })
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        />
-        <p>or</p>
-        <form className="form-flex" onSubmit={handleSubmitData}>
-          <input
-            name="email"
-            value={data.email}
-            placeholder="Enter your email"
-            type="text"
-            onChange={handleChangeData}
+
+      <main>
+        <div className="form-container">
+          <h2>Log In</h2>
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              // console.log(credentialResponse);
+              const infoUser = jwtDecode(credentialResponse.credential);
+              console.log(infoUser);
+              handleSubmitGoogle({
+                email: infoUser.email,
+                password: "Hola123",
+              });
+            }}
+            onError={() => {
+              console.log("Login Failed");
+            }}
           />
-          <input
-            name="password"
-            value={data.password}
-            placeholder="Enter your password"
-            type="password"
-            onChange={handleChangeData}
-          />
-          <button type="submit">Log In</button>
-        </form>
-        <div>
-          <p>Don't have an account?</p>
-          <h3><Link to="/signup">Sign Up</Link></h3>
+          <p>or</p>
+          <form className="form-flex" onSubmit={handleSubmitData}>
+            <input
+              name="email"
+              value={data.email}
+              placeholder="Enter your email"
+              type="text"
+              onChange={handleChangeData}
+            />
+            <input
+              name="password"
+              value={data.password}
+              placeholder="Enter your password"
+              type="password"
+              onChange={handleChangeData}
+            />
+            <button type="submit">Log In</button>
+          </form>
+          <div className="flexear">
+            <p>Don't have an account?</p>
+            <h3>
+              <Link to="/signup">Sign Up</Link>
+            </h3>
+          </div>
         </div>
-      </div>
+      </main>
+
       <Footer />
     </>
   );
