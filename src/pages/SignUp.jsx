@@ -2,6 +2,8 @@ import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Link, useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import jwtDecode from "jwt-decode";
 
 export default function SignUp() {
   const [data, setData] = useState({});
@@ -30,22 +32,56 @@ export default function SignUp() {
     }
   };
 
+  const handleSubmitGoogle = async (datax) => {
+    const response = await fetch("http://localhost:4000/api/auth/signup", {
+      method: "POST",
+      body: JSON.stringify(datax),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const json = await response.json();
+    console.log(json);
+    if (json.success === true) {
+      navigate("/login");
+    }
+  };
+
   return (
     <>
       <Header />
       <div className="form-container">
         <h2>Sign Up</h2>
+        <GoogleLogin
+          onSuccess={credentialResponse => {
+            // console.log(credentialResponse);
+            const infoUser = jwtDecode(credentialResponse.credential);
+            console.log(infoUser);
+            handleSubmitGoogle({
+              firstName: infoUser.given_name,
+              lastName: infoUser.family_name,
+              email: infoUser.email,
+              password: "Hola123",
+              imgUrl: infoUser.picture,
+              country: "Google"
+            })
+          }}
+          onError={() => {
+            console.log('Login Failed');
+          }}
+        />
+        <p>or</p>
         <form className="form-flex" onSubmit={handleSubmitData}>
           <input
             name="firstName"
-            value={data.firstname}
+            value={data.firstName}
             placeholder="Enter your first name"
             type="text"
             onChange={handleChangeData}
           />
           <input
             name="lastName"
-            value={data.lastname}
+            value={data.lastName}
             placeholder="Enter your last name"
             type="text"
             onChange={handleChangeData}
