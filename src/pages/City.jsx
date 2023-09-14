@@ -38,7 +38,6 @@ export default function City() {
           </> :
           itineraries.length > 0 ?
           itineraries.map((each, index) => {
-            // return <Itinerary key={index} id={each._id}/>
             return <Itinerary key={index} id={index}/>
           }) :
           <h3>There are no itineraries yet for this city ☻</h3>

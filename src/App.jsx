@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Index from "./pages/Index.jsx";
 import Cities from "./pages/Cities.jsx";
 import City from "./pages/City.jsx";
+import SignIn from "./pages/SignIn.jsx";
+import SignUp from "./pages/SignUp.jsx"
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,14 @@ const router = createBrowserRouter([
   {
     path:"/city/:id",
     element:<City />
+  },
+  {
+    path:"/login",
+    element:<SignIn />
+  },
+  {
+    path:"/signup",
+    element:<SignUp />
   }
 ]) 
 

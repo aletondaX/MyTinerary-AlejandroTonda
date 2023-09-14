@@ -14,7 +14,7 @@ export default function NavBar() {
           isPending ? "pending" : isActive ? "active" : ""}
           to="/cities">Cities</NavLink>
         <div className="login">
-          <Link className="highlight-button" to="#">Log In</Link>
+          <Link className="highlight-button" to="/login">Log In</Link>
           <img src="/def-user.png" alt="" draggable="false"/>
         </div>
       </div>
