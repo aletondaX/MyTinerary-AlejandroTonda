@@ -29,7 +29,7 @@ export default function SignIn() {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
-      });
+      })//.catch(error => console.log("acá tamo"));
       const json = await response.json();
       console.log(json);
       if (json.success === true) {
@@ -43,6 +43,7 @@ export default function SignIn() {
         setErrorMessage(json.message);
       }
     } catch (error) {
+      console.log("Entré al catch");
       console.log(error);
     }
   };
